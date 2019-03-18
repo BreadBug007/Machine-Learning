@@ -5,7 +5,8 @@ import random
 ROCK, PAPER, SCISSORS = 0, 1, 2
 num_actions = 3
 
-opp_strategy = np.array([0.4, 0.3, 0.3])
+# Randomly generated opponent strategy
+opp_strategy = np.random.dirichlet(np.ones(3), 1)
 
 
 def get_strategy(strategy_sum, regret_sum):
@@ -53,4 +54,5 @@ def train(iterations):
     return strategy_sum
 
 
-print(get_avg_strategy(train(100000)))
+print("%s is the opponent's strategy." % opp_strategy)
+print("%s is the best strategy against opponent's strategy." % get_avg_strategy(train(10000)))
